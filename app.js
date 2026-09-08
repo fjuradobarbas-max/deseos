@@ -4,11 +4,20 @@ const homeScreen = document.getElementById('home-screen');
 const editorScreen = document.getElementById('editor-screen');
 const cloudScreen = document.getElementById('cloud-screen');
 
-const selectedUserText =
-    document.getElementById('selected-user');
+const selectedUserText = document.getElementById('selected-user');
+const cloudContainer = document.getElementById('cloud-container');
+const wishText = document.getElementById('wish-text');
 
-const cloudContainer =
-    document.getElementById('cloud-container');
+function showScreen(screen) {
+
+    homeScreen.classList.add('hidden');
+    editorScreen.classList.add('hidden');
+    cloudScreen.classList.add('hidden');
+
+    screen.classList.remove('hidden');
+}
+
+showScreen(homeScreen);
 
 document
     .getElementById('fernando-btn')
@@ -16,11 +25,9 @@ document
 
         selectedUser = 'Fernando';
 
-        selectedUserText.textContent =
-            selectedUser;
+        selectedUserText.textContent = selectedUser;
 
-        homeScreen.classList.add('hidden');
-        editorScreen.classList.remove('hidden');
+        showScreen(editorScreen);
     });
 
 document
@@ -29,52 +36,38 @@ document
 
         selectedUser = 'Debora';
 
-        selectedUserText.textContent =
-            selectedUser;
+        selectedUserText.textContent = selectedUser;
 
-        homeScreen.classList.add('hidden');
-        editorScreen.classList.remove('hidden');
+        showScreen(editorScreen);
     });
 
 document
     .getElementById('back-btn')
     .addEventListener('click', () => {
 
-        editorScreen.classList.add('hidden');
-        homeScreen.classList.remove('hidden');
+        showScreen(homeScreen);
     });
 
 document
     .getElementById('next-btn')
     .addEventListener('click', () => {
 
-        const text =
-            document.getElementById('wish-text').value;
+        const text = wishText.value.trim();
 
-        if (!text.trim()) {
-
+        if (!text) {
             alert('Escribe un deseo');
-
             return;
         }
 
-        const cloud =
-            document.createElement('div');
+        const cloud = document.createElement('div');
 
-        cloud.classList.add('cloud');
-
-        if (selectedUser === 'Fernando') {
-            cloud.classList.add('fernando');
-        } else {
-            cloud.classList.add('debora');
-        }
+        cloud.className = `cloud ${selectedUser.toLowerCase()}`;
 
         cloud.textContent = text;
 
         cloudContainer.appendChild(cloud);
 
-        document.getElementById('wish-text').value = '';
+        wishText.value = '';
 
-        editorScreen.classList.add('hidden');
-        cloudScreen.classList.remove('hidden');
+        showScreen(cloudScreen);
     });
