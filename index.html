@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>DESEOS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESEOS</title>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>DESEOS</h1>
-  <p>La web funciona correctamente.</p>
+
+    <div id="home-screen">
+
+        <h1>DESEOS</h1>
+
+        <button id="fernando-btn" class="fernando">
+            Fernando
+        </button>
+
+        <button id="debora-btn" class="debora">
+            Debora
+        </button>
+
+    </div>
+
+    <div id="editor-screen" class="hidden">
+
+        <h2 id="selected-user"></h2>
+
+        <textarea
+            id="wish-text"
+            placeholder="Escribe tu deseo..."
+        ></textarea>
+
+        <div class="actions">
+
+            <button id="back-btn">
+                Anterior
+            </button>
+
+            <button id="next-btn">
+                Siguiente
+            </button>
+
+            <button id="history-btn">
+                Deseos cumplidos
+            </button>
+
+        </div>
+
+    </div>
+
+    app.jsscript>
+
 </body>
 </html>

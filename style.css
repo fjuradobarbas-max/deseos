@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 30px;
+    background: #f5f5f5;
+}
+
+.hidden {
+    display: none;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+button {
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+}
+
+.fernando {
+    background-color: #4a90e2;
+}
+
+.debora {
+    background-color: #ff69b4;
+}
+
+textarea {
+    width: 90%;
+    height: 200px;
+    padding: 10px;
+}
