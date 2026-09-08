@@ -1,5 +1,3 @@
-alert('app.js cargado');
-
 let selectedUser = '';
 
 const homeScreen = document.getElementById('home-screen');
