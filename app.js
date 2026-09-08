@@ -3,8 +3,10 @@ let selectedUser = '';
 const homeScreen = document.getElementById('home-screen');
 const editorScreen = document.getElementById('editor-screen');
 
-const selectedUserText =
-    document.getElementById('selected-user');
+const selectedUserText = document.getElementById('selected-user');
+
+// Prueba temporal
+alert('app.js cargado');
 
 document
     .getElementById('fernando-btn')
@@ -12,8 +14,7 @@ document
 
         selectedUser = 'Fernando';
 
-        selectedUserText.textContent =
-            selectedUser;
+        selectedUserText.textContent = selectedUser;
 
         homeScreen.classList.add('hidden');
         editorScreen.classList.remove('hidden');
@@ -25,8 +26,7 @@ document
 
         selectedUser = 'Debora';
 
-        selectedUserText.textContent =
-            selectedUser;
+        selectedUserText.textContent = selectedUser;
 
         homeScreen.classList.add('hidden');
         editorScreen.classList.remove('hidden');
