@@ -1,12 +1,16 @@
+alert('app.js cargado');
+
 let selectedUser = '';
 
 const homeScreen = document.getElementById('home-screen');
 const editorScreen = document.getElementById('editor-screen');
+const cloudScreen = document.getElementById('cloud-screen');
 
-const selectedUserText = document.getElementById('selected-user');
+const selectedUserText =
+    document.getElementById('selected-user');
 
-// Prueba temporal
-alert('app.js cargado');
+const cloudContainer =
+    document.getElementById('cloud-container');
 
 document
     .getElementById('fernando-btn')
@@ -14,7 +18,8 @@ document
 
         selectedUser = 'Fernando';
 
-        selectedUserText.textContent = selectedUser;
+        selectedUserText.textContent =
+            selectedUser;
 
         homeScreen.classList.add('hidden');
         editorScreen.classList.remove('hidden');
@@ -26,7 +31,8 @@ document
 
         selectedUser = 'Debora';
 
-        selectedUserText.textContent = selectedUser;
+        selectedUserText.textContent =
+            selectedUser;
 
         homeScreen.classList.add('hidden');
         editorScreen.classList.remove('hidden');
@@ -38,4 +44,39 @@ document
 
         editorScreen.classList.add('hidden');
         homeScreen.classList.remove('hidden');
+    });
+
+document
+    .getElementById('next-btn')
+    .addEventListener('click', () => {
+
+        const text =
+            document.getElementById('wish-text').value;
+
+        if (!text.trim()) {
+
+            alert('Escribe un deseo');
+
+            return;
+        }
+
+        const cloud =
+            document.createElement('div');
+
+        cloud.classList.add('cloud');
+
+        if (selectedUser === 'Fernando') {
+            cloud.classList.add('fernando');
+        } else {
+            cloud.classList.add('debora');
+        }
+
+        cloud.textContent = text;
+
+        cloudContainer.appendChild(cloud);
+
+        document.getElementById('wish-text').value = '';
+
+        editorScreen.classList.add('hidden');
+        cloudScreen.classList.remove('hidden');
     });
