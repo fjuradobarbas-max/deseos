@@ -1,13 +1,11 @@
 import { useState } from 'react';
 
 function App() {
-
   const [person, setPerson] = useState(null);
 
   if (!person) {
     return (
       <div className="home">
-
         <h1>DESEOS</h1>
 
         <button
@@ -23,20 +21,17 @@ function App() {
         >
           Debora
         </button>
-
       </div>
     );
   }
 
   return (
     <div className="editor">
-
       <h2>{person}</h2>
 
       <textarea
         placeholder="Escribe tu deseo..."
       />
-
     </div>
   );
 }
