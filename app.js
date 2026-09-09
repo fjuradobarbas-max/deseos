@@ -3,6 +3,14 @@ let selectedUser = '';
 const homeScreen = document.getElementById('home-screen');
 const editorScreen = document.getElementById('editor-screen');
 const cloudScreen = document.getElementById('cloud-screen');
+const detailScreen =
+    document.getElementById('detail-screen');
+
+let selectedCloud = null;
+
+const selectedWish =
+    document.getElementById('selected-wish');
+
 
 const selectedUserText = document.getElementById('selected-user');
 const cloudContainer = document.getElementById('cloud-container');
@@ -16,6 +24,7 @@ function hideAllScreens() {
     homeScreen.classList.add('hidden');
     editorScreen.classList.add('hidden');
     cloudScreen.classList.add('hidden');
+    detailScreen.classList.add('hidden');
 
 }
 
@@ -120,9 +129,44 @@ document
 
         cloud.textContent = text;
 
+        cloud.addEventListener('click', function () {
+
+    selectedCloud = cloud;
+
+    selectedWish.textContent =
+        cloud.textContent;
+
+    showScreen(detailScreen);
+
+});
+
         cloudContainer.appendChild(cloud);
 
         wishText.value = '';
+
+        showScreen(cloudScreen);
+
+    });
+
+    document
+    .getElementById('detail-back-btn')
+    .addEventListener('click', function () {
+
+        showScreen(cloudScreen);
+
+    });
+
+    document
+    .getElementById('complete-btn')
+    .addEventListener('click', function () {
+
+        if (selectedCloud) {
+
+            selectedCloud.remove();
+
+            selectedCloud = null;
+
+        }
 
         showScreen(cloudScreen);
 
