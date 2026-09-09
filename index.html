@@ -2,72 +2,85 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DESEOS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DESEOS</title>
 
-    <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- PANTALLA INICIAL -->
-    <div id="home-screen">
+  <!-- PANTALLA INICIAL -->
+  <div id="home-screen">
 
-        <h1>DESEOS</h1>
+    <h1>DESEOS</h1>
 
-        <button id="fernando-btn" class="fernando">
-            Fernando
-        </button>
+    <button id="fernando-btn" class="fernando">
+      Fernando
+    </button>
 
-        <button id="debora-btn" class="debora">
-            Debora
-        </button>
+    <button id="debora-btn" class="debora">
+      Debora
+    </button>
 
-    </div>
+  </div>
 
-    <!-- PANTALLA EDITOR -->
-    <div id="editor-screen" class="hidden">
+  <!-- PANTALLA EDITOR -->
+  <div id="editor-screen" class="hidden">
 
-        <h2 id="selected-user"></h2>
+    <h2 id="selected-user"></h2>
 
-        <textarea
-            id="wish-text"
-            placeholder="Escribe tu deseo..."
-        ></textarea>
+    <textarea id="wish-text" placeholder="Escribe tu deseo..."></textarea>
 
-        <div class="buttons">
+    <div class="buttons">
 
-            <button id="back-btn">
-                Anterior
-            </button>
+      <button id="back-btn">
+        Anterior
+      </button>
 
-            <button id="next-btn">
-                Siguiente
-            </button>
+      <button id="next-btn">
+        Siguiente
+      </button>
 
-            <button id="history-btn">
-                Deseos cumplidos
-            </button>
-
-        </div>
+      <button id="history-btn">
+        Deseos cumplidos
+      </button>
 
     </div>
 
-    <!-- PANTALLA NUBES -->
-    <div id="cloud-screen" class="hidden">
+  </div>
 
-        <h2>Nube de deseos</h2>
+  <!-- PANTALLA NUBES -->
+  <div id="cloud-screen" class="hidden">
 
-        <div id="cloud-container"></div>
+    <h2>Nube de deseos</h2>
 
-        <button id="cloud-back-btn">
-            Volver
-        </button>
+    <div id="cloud-container"></div>
 
-    </div>
+    <button id="cloud-back-btn">
+      Volver
+    </button>
 
-    <script src="app.js"></script>
+  </div>
+
+  <!-- PANTALLA DETALLE -->
+  <div id="detail-screen" class="hidden">
+
+    <h2>Deseo</h2>
+
+    <div id="selected-wish"></div>
+
+    <button id="complete-btn">
+      Cumplido
+    </button>
+
+    <button id="detail-back-btn">
+      Volver
+    </button>
+
+  </div>
+  <script src="app.js"></script>
 
 </body>
 

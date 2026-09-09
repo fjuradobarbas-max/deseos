@@ -73,3 +73,18 @@ textarea {
 #complete-btn {
     margin-top: 20px;
 }
+#selected-wish {
+    background-color: #666;
+    color: white;
+    padding: 25px;
+    border-radius: 30px;
+    margin: 20px auto;
+    max-width: 500px;
+    font-size: 22px;
+}
+
+#complete-btn,
+#detail-back-btn,
+#cloud-back-btn {
+    margin-top: 20px;
+}
