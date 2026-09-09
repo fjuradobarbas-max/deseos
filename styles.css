@@ -58,3 +58,18 @@ textarea {
 .cloud.debora {
     background-color: #ff69b4;
 }
+#selected-wish {
+    padding: 30px;
+    border-radius: 30px;
+    color: white;
+    font-size: 22px;
+    margin: 20px auto;
+    max-width: 500px;
+    background: #666;
+}
+
+#cloud-back-btn,
+#detail-back-btn,
+#complete-btn {
+    margin-top: 20px;
+}
