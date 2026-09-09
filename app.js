@@ -3,17 +3,16 @@ let selectedUser = '';
 const homeScreen = document.getElementById('home-screen');
 const editorScreen = document.getElementById('editor-screen');
 const cloudScreen = document.getElementById('cloud-screen');
-const detailScreen =
-    document.getElementById('detail-screen');
+const detailScreen = document.getElementById('detail-screen');
+const historyScreen = document.getElementById('history-screen');
 
 let selectedCloud = null;
 
-const selectedWish =
-    document.getElementById('selected-wish');
-
+const selectedWish = document.getElementById('selected-wish');
 
 const selectedUserText = document.getElementById('selected-user');
 const cloudContainer = document.getElementById('cloud-container');
+const historyContainer = document.getElementById('history-container');
 const wishText = document.getElementById('wish-text');
 
 /*
@@ -25,6 +24,7 @@ function hideAllScreens() {
     editorScreen.classList.add('hidden');
     cloudScreen.classList.add('hidden');
     detailScreen.classList.add('hidden');
+    historyScreen.classList.add('hidden');
 
 }
 
@@ -36,6 +36,65 @@ function showScreen(screen) {
     hideAllScreens();
 
     screen.classList.remove('hidden');
+
+}
+
+/*
+    Envía un deseo al histórico
+*/
+function moveToHistory(cloud) {
+
+    const item = document.createElement('div');
+
+    item.classList.add('history-item');
+
+    const text = document.createElement('div');
+
+    text.textContent = cloud.textContent;
+
+    const restoreButton =
+        document.createElement('button');
+
+    restoreButton.classList.add('restore-btn');
+
+    restoreButton.textContent =
+        'Reincorporar';
+
+    restoreButton.addEventListener('click', function () {
+
+        const restored =
+            document.createElement('div');
+
+        restored.className =
+            cloud.className;
+
+        restored.textContent =
+            cloud.textContent;
+
+        restored.addEventListener('click', function () {
+
+            selectedCloud = restored;
+
+            selectedWish.textContent =
+                restored.textContent;
+
+            showScreen(detailScreen);
+
+        });
+
+        cloudContainer.appendChild(restored);
+
+        item.remove();
+
+    });
+
+    item.appendChild(text);
+
+    item.appendChild(restoreButton);
+
+    historyContainer.appendChild(item);
+
+    cloud.remove();
 
 }
 
@@ -53,7 +112,8 @@ document
 
         selectedUser = 'Fernando';
 
-        selectedUserText.textContent = selectedUser;
+        selectedUserText.textContent =
+            selectedUser;
 
         showScreen(editorScreen);
 
@@ -68,7 +128,8 @@ document
 
         selectedUser = 'Debora';
 
-        selectedUserText.textContent = selectedUser;
+        selectedUserText.textContent =
+            selectedUser;
 
         showScreen(editorScreen);
 
@@ -86,10 +147,32 @@ document
     });
 
 /*
-    Volver desde la nube
+    Volver desde nube
 */
 document
     .getElementById('cloud-back-btn')
+    .addEventListener('click', function () {
+
+        showScreen(editorScreen);
+
+    });
+
+/*
+    Abrir histórico
+*/
+document
+    .getElementById('history-btn')
+    .addEventListener('click', function () {
+
+        showScreen(historyScreen);
+
+    });
+
+/*
+    Volver del histórico
+*/
+document
+    .getElementById('history-back-btn')
     .addEventListener('click', function () {
 
         showScreen(editorScreen);
@@ -113,7 +196,8 @@ document
 
         }
 
-        const cloud = document.createElement('div');
+        const cloud =
+            document.createElement('div');
 
         cloud.classList.add('cloud');
 
@@ -131,14 +215,14 @@ document
 
         cloud.addEventListener('click', function () {
 
-    selectedCloud = cloud;
+            selectedCloud = cloud;
 
-    selectedWish.textContent =
-        cloud.textContent;
+            selectedWish.textContent =
+                cloud.textContent;
 
-    showScreen(detailScreen);
+            showScreen(detailScreen);
 
-});
+        });
 
         cloudContainer.appendChild(cloud);
 
@@ -148,7 +232,10 @@ document
 
     });
 
-    document
+/*
+    Volver detalle
+*/
+document
     .getElementById('detail-back-btn')
     .addEventListener('click', function () {
 
@@ -156,13 +243,16 @@ document
 
     });
 
-    document
+/*
+    Cumplido
+*/
+document
     .getElementById('complete-btn')
     .addEventListener('click', function () {
 
         if (selectedCloud) {
 
-            selectedCloud.remove();
+            moveToHistory(selectedCloud);
 
             selectedCloud = null;
 

@@ -74,3 +74,27 @@ textarea {
 #detail-back-btn {
     background: gray;
 }
+
+.history-item {
+
+    background-color: #eeeeee;
+
+    padding: 15px;
+    margin: 10px;
+
+    border-radius: 15px;
+}
+
+.restore-btn {
+
+    background-color: green;
+    color: white;
+
+    margin-top: 10px;
+}
+
+#history-container {
+
+    max-width: 600px;
+    margin: 0 auto;
+}
