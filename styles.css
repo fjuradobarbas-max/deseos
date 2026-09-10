@@ -204,15 +204,19 @@ textarea {
 
 .cloud {
 
+    position: relative;
+
     display: block;
 
-    max-width: 700px;
+    width: fit-content;
 
-    margin: 15px auto;
+    max-width: 70%;
 
-    padding: 18px 25px;
+    margin: 20px auto;
 
-    border-radius: 999px;
+    padding: 20px 35px;
+
+    border-radius: 100px;
 
     color: white;
 
@@ -220,15 +224,76 @@ textarea {
 
     cursor: pointer;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.20),
+        0 4px 8px rgba(255,255,255,.20);
 
-    transition: all 0.20s ease;
+    transition: all .3s ease;
+
+    animation: float 8s ease-in-out infinite;
+
+}
+
+.cloud::before,
+.cloud::after {
+
+    content: '';
+
+    position: absolute;
+
+    background: inherit;
+
+    border-radius: 50%;
+
+}
+
+.cloud::before {
+
+    width: 35px;
+    height: 35px;
+
+    top: -15px;
+    left: 25px;
+
+}
+
+.cloud::after {
+
+    width: 45px;
+    height: 45px;
+
+    top: -20px;
+    right: 25px;
+}
+
+@keyframes float {
+
+    0% {
+
+        transform:
+            translateY(0px);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-12px);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(0px);
+
+    }
 
 }
 
 .cloud:hover {
 
-    transform: scale(1.02);
+    transform: scale(1.05);
 
 }
 

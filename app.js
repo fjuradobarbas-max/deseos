@@ -118,6 +118,11 @@ function renderWish(docId, data) {
 
     cloud.className =
         data.className;
+    cloud.style.animationDuration =
+    (6 + Math.random() * 6) + 's';
+
+    cloud.style.animationDelay =
+    (Math.random() * 5) + 's';
 
     cloud.textContent =
         data.text;
