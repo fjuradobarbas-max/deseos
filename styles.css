@@ -2,6 +2,7 @@
    GENERAL
 ===================================== */
 
+
 body {
 
     margin: 0;
@@ -9,11 +10,18 @@ body {
 
     font-family: Arial, sans-serif;
 
-    background: linear-gradient(
-        135deg,
-        #ffd9ec,
-        #dfefff
-    );
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.6) 0 60px, transparent 61px),
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,.5) 0 80px, transparent 81px),
+        radial-gradient(circle at 40% 75%, rgba(255,255,255,.4) 0 70px, transparent 71px),
+        linear-gradient(
+            180deg,
+            #87CEEB,
+            #BFE8FF,
+            #EAF8FF
+        );
+
+    background-attachment: fixed;
 
     text-align: center;
 
@@ -197,8 +205,17 @@ textarea {
 
 #cloud-container {
 
-    margin-top: 30px;
-    margin-bottom: 30px;
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    gap: 25px;
+
+    padding: 30px;
 
 }
 
@@ -230,7 +247,12 @@ textarea {
 
     transition: all .3s ease;
 
-    animation: float 8s ease-in-out infinite;
+   
+    overflow: visible;
+
+    animation:
+    appear .5s ease,
+    float 8s ease-in-out infinite;
 
 }
 
@@ -249,21 +271,22 @@ textarea {
 
 .cloud::before {
 
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 50px;
 
-    top: -15px;
-    left: 25px;
+    top: -22px;
+    left: 30px;
 
 }
 
 .cloud::after {
 
-    width: 45px;
-    height: 45px;
+    width: 70px;
+    height: 70px;
 
-    top: -20px;
-    right: 25px;
+    top: -32px;
+    right: 30px;
+
 }
 
 @keyframes float {
@@ -286,6 +309,24 @@ textarea {
 
         transform:
             translateY(0px);
+
+    }
+
+}
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+        transform: scale(0.8);
+
+    }
+
+    to {
+
+        opacity: 1;
+        transform: scale(1);
 
     }
 
