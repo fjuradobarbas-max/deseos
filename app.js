@@ -88,3 +88,132 @@ function showScreen(screen) {
     screen.classList.remove('hidden');
 
 }
+
+function hideAllScreens() {
+
+    homeScreen.classList.add('hidden');
+    editorScreen.classList.add('hidden');
+    detailScreen.classList.add('hidden');
+    historyScreen.classList.add('hidden');
+
+}
+
+function showScreen(screen) {
+
+    hideAllScreens();
+
+    screen.classList.remove('hidden');
+
+}
+
+function renderWish(docId, data) {
+
+    const cloud =
+        document.createElement('div');
+
+    cloud.className =
+        data.className;
+
+    cloud.textContent =
+        data.text;
+
+    cloud.dataset.id =
+        docId;
+
+    cloud.addEventListener('click', function () {
+
+        selectedCloud = {
+            id: docId,
+            text: data.text,
+            className: data.className
+        };
+
+        selectedWish.textContent =
+            data.text;
+
+        showScreen(detailScreen);
+
+    });
+
+    cloudContainer.appendChild(cloud);
+
+}
+
+function renderCompleted(docId, data) {
+
+    const item =
+        document.createElement('div');
+
+    item.classList.add('history-item');
+
+    const title =
+        document.createElement('div');
+
+    title.textContent =
+        data.text;
+
+    const restoreButton =
+        document.createElement('button');
+
+    restoreButton.classList.add('restore-btn');
+
+    restoreButton.textContent =
+        'Reincorporar';
+
+    restoreButton.addEventListener(
+        'click',
+        async function () {
+
+            await addDoc(
+                collection(db, 'wishes'),
+                {
+                    text: data.text,
+                    className: data.className,
+                    author: data.author
+                }
+            );
+
+            await deleteDoc(
+                doc(
+                    db,
+                    'completed_wishes',
+                    docId
+                )
+            );
+
+        }
+    );
+
+    item.appendChild(title);
+    item.appendChild(restoreButton);
+
+    historyContainer.appendChild(item);
+
+}
+
+onSnapshot(
+
+    query(
+        collection(
+            db,
+            'wishes'
+        )
+    ),
+
+    function (snapshot) {
+
+        cloudContainer.innerHTML = '';
+
+        snapshot.forEach(function (documento) {
+
+            renderWish(
+                documento.id,
+                documento.data()
+            );
+
+        });
+
+    }
+
+);
+showScreen(homeScreen);
