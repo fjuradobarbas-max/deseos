@@ -205,58 +205,43 @@ textarea {
 
 #cloud-container {
 
-    display: flex;
+    position: relative;
 
-    flex-wrap: wrap;
+    width: 100%;
 
-    justify-content: center;
+    min-height: 700px;
 
-    align-items: flex-start;
-
-    gap: 25px;
-
-    padding: 30px;
+    margin-top: 30px;
 
 }
+
+
 
 .cloud {
 
-    position: relative;
+    position: absolute;
 
-    display: block;
+    width: 220px;
 
-    width: fit-content;
+    padding: 18px;
 
-    max-width: 70%;
-
-    margin: 20px auto;
-
-    padding: 20px 35px;
-
-    border-radius: 100px;
+    border-radius: 999px;
 
     color: white;
 
+    text-align: center;
+
     font-weight: bold;
 
-    cursor: pointer;
-
     box-shadow:
-        0 10px 25px rgba(0,0,0,.20),
-        0 4px 8px rgba(255,255,255,.20);
-
-    transition: all .3s ease;
-
-   
-    overflow: visible;
+        0 8px 20px rgba(0,0,0,.20);
 
     animation:
-    appear .5s ease,
-    float 8s ease-in-out infinite;
-
-    z-index: 10;
+        float 8s ease-in-out infinite;
 
 }
+
+
 
 .cloud::before,
 .cloud::after {
@@ -314,21 +299,35 @@ textarea {
     0% {
 
         transform:
-            translateY(0px);
+            translate(0px, 0px);
+
+    }
+
+    25% {
+
+        transform:
+            translate(6px, -10px);
 
     }
 
     50% {
 
         transform:
-            translateY(-12px);
+            translate(0px, -15px);
+
+    }
+
+    75% {
+
+        transform:
+            translate(-6px, -8px);
 
     }
 
     100% {
 
         transform:
-            translateY(0px);
+            translate(0px, 0px);
 
     }
 
@@ -470,3 +469,4 @@ textarea {
     color: #777;
 
 }
+

@@ -119,16 +119,42 @@ function renderWish(docId, data) {
     cloud.className =
         data.className;
     cloud.style.animationDuration =
-    (6 + Math.random() * 6) + 's';
+    (8 + Math.random() * 8) + 's';
 
     cloud.style.animationDelay =
-    (Math.random() * 5) + 's';
+    (Math.random() * 4) + 's';
 
     cloud.textContent =
         data.text;
 
     cloud.dataset.id =
         docId;
+        const columns = 4;
+
+const columnWidth = 250;
+
+const rowHeight = 120;
+
+cloud.style.left =
+    (data.posX * columnWidth) + 'px';
+
+cloud.style.top =
+    (data.posY * rowHeight) + 'px';
+
+const maxX =
+    window.innerWidth - 350;
+
+const maxY = 550;
+
+cloud.style.left =
+    Math.floor(
+        Math.random() * maxX
+    ) + 'px';
+
+cloud.style.top =
+    Math.floor(
+        Math.random() * maxY
+    ) + 'px';
 
     cloud.addEventListener('click', function () {
 
@@ -200,21 +226,24 @@ completedDate.textContent =
         'click',
         async function () {
 
-            await addDoc(
-                collection(
-                    db,
-                    'wishes'
-                ),
-                {
-                    text: data.text,
-                    className:
-                        data.className,
-                    author:
-                        data.author,
-                    createdAt:
-                        Date.now()
-                }
-            );
+await addDoc(
+    collection(db, 'wishes'),
+    {
+        text: text,
+        author: selectedUser,
+        className:
+            `cloud ${selectedUser.toLowerCase()}`,
+
+        posX:
+            Math.floor(Math.random() * 4),
+
+        posY:
+            Math.floor(Math.random() * 6),
+
+        createdAt:
+            Date.now()
+    }
+);
 
             await deleteDoc(
                 doc(
