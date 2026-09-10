@@ -75,6 +75,15 @@ const cloudContainer =
 const historyContainer =
     document.getElementById('history-container');
 
+const activeCount =
+    document.getElementById('active-count');
+
+const completedCount =
+    document.getElementById('completed-count');
+
+const emptyHistory =
+    document.getElementById('empty-history');
+
 /* ==========================
    PANTALLAS
 ========================== */
@@ -154,6 +163,23 @@ function renderCompleted(docId, data) {
 
     title.textContent =
         data.text;
+    const completedDate =
+    document.createElement('div');
+
+completedDate.style.fontSize =
+    '12px';
+
+completedDate.style.color =
+    '#777';
+
+completedDate.style.marginTop =
+    '8px';
+
+completedDate.textContent =
+    'Cumplido: ' +
+    new Date(
+        data.completedAt
+    ).toLocaleString();
 
     const restoreButton =
         document.createElement('button');
@@ -198,6 +224,8 @@ function renderCompleted(docId, data) {
 
     item.appendChild(title);
 
+    item.appendChild(completedDate);
+
     item.appendChild(
         restoreButton
     );
@@ -224,6 +252,9 @@ onSnapshot(
     function (snapshot) {
 
         cloudContainer.innerHTML = '';
+        
+        activeCount.textContent =
+        `💙 Activos: ${snapshot.size}`;
 
         snapshot.forEach(
             function (documento) {
@@ -252,6 +283,21 @@ onSnapshot(
     function (snapshot) {
 
         historyContainer.innerHTML = '';
+
+        completedCount.textContent =
+    `⭐ Cumplidos: ${snapshot.size}`;
+
+if (snapshot.size === 0) {
+
+    emptyHistory.style.display =
+        'block';
+
+} else {
+
+    emptyHistory.style.display =
+        'none';
+
+}
 
         snapshot.forEach(
             function (documento) {
