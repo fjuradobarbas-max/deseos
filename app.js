@@ -119,30 +119,16 @@ function renderWish(docId, data) {
     cloud.className =
         data.className;
     cloud.style.animationDuration =
-    (8 + Math.random() * 8) + 's';
+    (6 + Math.random() * 6) + 's';
 
     cloud.style.animationDelay =
-    (Math.random() * 4) + 's';
+    (Math.random() * 5) + 's';
 
     cloud.textContent =
         data.text;
 
     cloud.dataset.id =
         docId;
-const maxX =
-    window.innerWidth - 350;
-
-const maxY = 550;
-
-cloud.style.left =
-    Math.floor(
-        Math.random() * maxX
-    ) + 'px';
-
-cloud.style.top =
-    Math.floor(
-        Math.random() * maxY
-    ) + 'px';
 
     cloud.addEventListener('click', function () {
 
