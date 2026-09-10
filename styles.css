@@ -211,42 +211,35 @@ textarea {
 
     min-height: 700px;
 
-    margin-top: 30px;
+    overflow: hidden;
+
+    margin-top: 20px;
 
 }
+
+
 
 .cloud {
 
     position: absolute;
 
-    width: fit-content;
+    padding: 18px 28px;
 
-    max-width: 350px;
+    border-radius: 999px;
 
-    min-width: 120px;
+    color: white;
 
-    padding: 18px 30px;
+    font-weight: bold;
 
-    white-space: normal;
-
-    word-wrap: break-word;
-
-    text-align: center;
+    cursor: pointer;
 
     box-shadow:
-        0 8px 20px rgba(0,0,0,.20);
+        0 8px 20px rgba(0,0,0,.18);
 
     animation:
         float 8s ease-in-out infinite;
 
 }
-
-.cloud div:first-child {
-
-    display: inline-block;
-
-}
-
 
 
 
@@ -476,18 +469,3 @@ textarea {
     color: #777;
 
 }
-
-#completed-count {
-
-    cursor: pointer;
-
-    transition: all .2s ease;
-
-}
-
-#completed-count:hover {
-
-    transform: scale(1.05);
-
-}
-

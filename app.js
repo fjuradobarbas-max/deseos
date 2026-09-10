@@ -129,18 +129,6 @@ function renderWish(docId, data) {
 
     cloud.dataset.id =
         docId;
-        const columns = 4;
-
-const columnWidth = 250;
-
-const rowHeight = 120;
-
-cloud.style.left =
-    (data.posX * columnWidth) + 'px';
-
-cloud.style.top =
-    (data.posY * rowHeight) + 'px';
-
 const maxX =
     window.innerWidth - 350;
 
@@ -226,24 +214,21 @@ completedDate.textContent =
         'click',
         async function () {
 
-await addDoc(
-    collection(db, 'wishes'),
-    {
-        text: text,
-        author: selectedUser,
-        className:
-            `cloud ${selectedUser.toLowerCase()}`,
-
-        posX:
-            Math.floor(Math.random() * 4),
-
-        posY:
-            Math.floor(Math.random() * 6),
-
-        createdAt:
-            Date.now()
-    }
-);
+            await addDoc(
+                collection(
+                    db,
+                    'wishes'
+                ),
+                {
+                    text: data.text,
+                    className:
+                        data.className,
+                    author:
+                        data.author,
+                    createdAt:
+                        Date.now()
+                }
+            );
 
             await deleteDoc(
                 doc(
@@ -427,18 +412,21 @@ document
 
         }
     );
-    
-    completedCount.addEventListener(
-    'click',
-    function () {
 
-        showScreen(
-            historyScreen
-        );
+document
+    .getElementById(
+        'history-btn'
+    )
+    .addEventListener(
+        'click',
+        function () {
 
-    }
-);
+            showScreen(
+                historyScreen
+            );
 
+        }
+    );
 
 document
     .getElementById(
