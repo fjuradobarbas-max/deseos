@@ -1,29 +1,37 @@
 let selectedUser = '';
 let selectedCloud = null;
 
-const homeScreen = document.getElementById('home-screen');
-const editorScreen = document.getElementById('editor-screen');
-const cloudScreen = document.getElementById('cloud-screen');
-const detailScreen = document.getElementById('detail-screen');
-const historyScreen = document.getElementById('history-screen');
+const homeScreen =
+    document.getElementById('home-screen');
 
-const selectedUserText = document.getElementById('selected-user');
-const selectedWish = document.getElementById('selected-wish');
+const editorScreen =
+    document.getElementById('editor-screen');
 
-const wishText = document.getElementById('wish-text');
+const detailScreen =
+    document.getElementById('detail-screen');
 
-const cloudContainer = document.getElementById('cloud-container');
-const historyContainer = document.getElementById('history-container');
+const historyScreen =
+    document.getElementById('history-screen');
 
-/* ==========================
-   PANTALLAS
-========================== */
+const cloudContainer =
+    document.getElementById('cloud-container');
+
+const historyContainer =
+    document.getElementById('history-container');
+
+const selectedWish =
+    document.getElementById('selected-wish');
+
+const selectedUserText =
+    document.getElementById('selected-user');
+
+const wishText =
+    document.getElementById('wish-text');
 
 function hideAllScreens() {
 
     homeScreen.classList.add('hidden');
     editorScreen.classList.add('hidden');
-    cloudScreen.classList.add('hidden');
     detailScreen.classList.add('hidden');
     historyScreen.classList.add('hidden');
 
@@ -37,93 +45,16 @@ function showScreen(screen) {
 
 }
 
-/* ==========================
-   LOCAL STORAGE
-========================== */
-
-function saveData() {
-
-    const clouds = [];
-    const history = [];
-
-    document
-        .querySelectorAll('#cloud-container .cloud')
-        .forEach(function (cloud) {
-
-            clouds.push({
-                text: cloud.textContent,
-                className: cloud.className
-            });
-
-        });
-
-    document
-        .querySelectorAll('.history-item')
-        .forEach(function (item) {
-
-            history.push({
-                text: item.dataset.text,
-                className: item.dataset.classname
-            });
-
-        });
-
-    localStorage.setItem(
-        'deseos_clouds',
-        JSON.stringify(clouds)
-    );
-
-    localStorage.setItem(
-        'deseos_history',
-        JSON.stringify(history)
-    );
-
-}
-
-function loadData() {
-
-    const clouds =
-        JSON.parse(
-            localStorage.getItem('deseos_clouds')
-        ) || [];
-
-    const history =
-        JSON.parse(
-            localStorage.getItem('deseos_history')
-        ) || [];
-
-    clouds.forEach(function (cloud) {
-
-        createCloud(
-            cloud.text,
-            cloud.className
-        );
-
-    });
-
-    history.forEach(function (item) {
-
-        createHistoryItem(
-            item.text,
-            item.className
-        );
-
-    });
-
-}
-
-/* ==========================
-   DESEOS ACTIVOS
-========================== */
-
 function createCloud(text, className) {
 
     const cloud =
         document.createElement('div');
 
-    cloud.className = className;
+    cloud.className =
+        className;
 
-    cloud.textContent = text;
+    cloud.textContent =
+        text;
 
     cloud.addEventListener('click', function () {
 
@@ -138,13 +69,7 @@ function createCloud(text, className) {
 
     cloudContainer.appendChild(cloud);
 
-    return cloud;
-
 }
-
-/* ==========================
-   HISTORICO
-========================== */
 
 function createHistoryItem(text, className) {
 
@@ -153,23 +78,21 @@ function createHistoryItem(text, className) {
 
     item.classList.add('history-item');
 
-    item.dataset.text = text;
-    item.dataset.classname = className;
-
-    const content =
+    const title =
         document.createElement('div');
 
-    content.textContent = text;
+    title.textContent =
+        text;
 
-    const restoreButton =
+    const restore =
         document.createElement('button');
 
-    restoreButton.classList.add('restore-btn');
+    restore.classList.add('restore-btn');
 
-    restoreButton.textContent =
+    restore.textContent =
         'Reincorporar';
 
-    restoreButton.addEventListener('click', function () {
+    restore.addEventListener('click', function () {
 
         createCloud(
             text,
@@ -182,155 +105,116 @@ function createHistoryItem(text, className) {
 
     });
 
-    item.appendChild(content);
-    item.appendChild(restoreButton);
+    item.appendChild(title);
+    item.appendChild(restore);
 
     historyContainer.appendChild(item);
 
 }
 
-function moveToHistory(cloud) {
+function saveData() {
 
-    createHistoryItem(
-        cloud.textContent,
-        cloud.className
+    localStorage.setItem(
+        'clouds',
+        cloudContainer.innerHTML
     );
 
-    cloud.remove();
-
-    saveData();
-
+    localStorage.setItem(
+        'history',
+        historyContainer.innerHTML
+    );
 }
 
-/* ==========================
-   INICIO
-========================== */
+document
+.getElementById('fernando-btn')
+.addEventListener('click', function () {
 
-showScreen(homeScreen);
+    selectedUser = 'Fernando';
 
-loadData();
+    selectedUserText.textContent =
+        selectedUser;
 
-/* ==========================
-   USUARIOS
-========================== */
+    showScreen(editorScreen);
+
+});
 
 document
-    .getElementById('fernando-btn')
-    .addEventListener('click', function () {
+.getElementById('debora-btn')
+.addEventListener('click', function () {
 
-        selectedUser = 'Fernando';
+    selectedUser = 'Debora';
 
-        selectedUserText.textContent =
-            selectedUser;
+    selectedUserText.textContent =
+        selectedUser;
 
-        showScreen(editorScreen);
+    showScreen(editorScreen);
 
-    });
-
-document
-    .getElementById('debora-btn')
-    .addEventListener('click', function () {
-
-        selectedUser = 'Debora';
-
-        selectedUserText.textContent =
-            selectedUser;
-
-        showScreen(editorScreen);
-
-    });
-
-/* ==========================
-   NAVEGACION
-========================== */
+});
 
 document
-    .getElementById('back-btn')
-    .addEventListener('click', function () {
+.getElementById('back-btn')
+.addEventListener('click', function () {
 
-        showScreen(homeScreen);
+    showScreen(homeScreen);
 
-    });
-
-document
-    .getElementById('cloud-back-btn')
-    .addEventListener('click', function () {
-
-        showScreen(editorScreen);
-
-    });
+});
 
 document
-    .getElementById('detail-back-btn')
-    .addEventListener('click', function () {
+.getElementById('save-btn')
+.addEventListener('click', function () {
 
-        showScreen(cloudScreen);
+    const text = wishText.value.trim();
 
-    });
+    if (!text) return;
 
-document
-    .getElementById('history-btn')
-    .addEventListener('click', function () {
+    createCloud(
+        text,
+        `cloud ${selectedUser.toLowerCase()}`
+    );
 
-        showScreen(historyScreen);
+    wishText.value = '';
 
-    });
+    showScreen(homeScreen);
 
-document
-    .getElementById('history-back-btn')
-    .addEventListener('click', function () {
-
-        showScreen(editorScreen);
-
-    });
-
-/* ==========================
-   CREAR DESEO
-========================== */
+});
 
 document
-    .getElementById('next-btn')
-    .addEventListener('click', function () {
+.getElementById('detail-back-btn')
+.addEventListener('click', function () {
 
-        const text =
-            wishText.value.trim();
+    showScreen(homeScreen);
 
-        if (text === '') {
-
-            alert('Escribe un deseo');
-
-            return;
-        }
-
-        createCloud(
-            text,
-            `cloud ${selectedUser.toLowerCase()}`
-        );
-
-        wishText.value = '';
-
-        saveData();
-
-        showScreen(cloudScreen);
-
-    });
-
-/* ==========================
-   CUMPLIDO
-========================== */
+});
 
 document
-    .getElementById('complete-btn')
-    .addEventListener('click', function () {
+.getElementById('history-btn')
+.addEventListener('click', function () {
 
-        if (selectedCloud) {
+    showScreen(historyScreen);
 
-            moveToHistory(selectedCloud);
+});
 
-            selectedCloud = null;
+document
+.getElementById('history-back-btn')
+.addEventListener('click', function () {
 
-        }
+    showScreen(homeScreen);
 
-        showScreen(cloudScreen);
+});
 
-    });
+document
+.getElementById('complete-btn')
+.addEventListener('click', function () {
+
+    if (!selectedCloud) return;
+
+    createHistoryItem(
+        selectedCloud.textContent,
+        selectedCloud.className
+    );
+
+    selectedCloud.remove();
+
+    showScreen(homeScreen);
+
+});

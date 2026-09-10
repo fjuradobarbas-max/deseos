@@ -1,102 +1,149 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+
     margin: 0;
-    padding: 30px;
-    background: #f5f5f5;
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #ffe1f0,
+        #dcefff
+    );
+
+    text-align: center;
 }
 
 .hidden {
     display: none !important;
 }
 
-h1 {
-    font-size: 48px;
+.title {
+
+    font-size: 60px;
+    font-weight: bold;
+
+    margin-top: 30px;
+
+    color: white;
+
+    text-shadow: 2px 2px 5px #666;
+}
+
+.users {
+
+    margin-top: 30px;
 }
 
 button {
+
     border: none;
-    border-radius: 15px;
-    padding: 20px;
+
+    border-radius: 20px;
+
+    padding: 15px 25px;
+
     margin: 10px;
+
     cursor: pointer;
+
     color: white;
+
     font-size: 18px;
 }
 
 .fernando {
-    background-color: #4a90e2;
+
+    background: #4a90e2;
 }
 
 .debora {
-    background-color: #ff69b4;
+
+    background: #ff69b4;
+}
+
+.history-button {
+
+    background: #8e44ad;
 }
 
 textarea {
+
     width: 90%;
-    height: 200px;
-    padding: 10px;
+    max-width: 600px;
+
+    height: 250px;
+
+    border-radius: 20px;
+
+    border: none;
+
+    padding: 15px;
+
+    font-size: 18px;
 }
 
 #cloud-container {
-    margin-top: 20px;
+
+    margin-top: 30px;
 }
 
 .cloud {
+
     display: inline-block;
-    padding: 20px;
+
     margin: 10px;
-    border-radius: 40px;
+
+    padding: 15px 25px;
+
+    border-radius: 999px;
+
     color: white;
+
+    cursor: pointer;
+
     font-weight: bold;
+
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .cloud.fernando {
-    background-color: #4a90e2;
+
+    background: #4a90e2;
 }
 
 .cloud.debora {
-    background-color: #ff69b4;
+
+    background: #ff69b4;
 }
 
 #selected-wish {
-    background-color: #666;
-    color: white;
+
+    background: white;
+
+    border-radius: 20px;
+
     padding: 25px;
-    border-radius: 25px;
+
     margin: 20px auto;
-    max-width: 500px;
-    font-size: 22px;
-}
 
-#complete-btn {
-    background: green;
-}
-
-#detail-back-btn {
-    background: gray;
+    max-width: 600px;
 }
 
 .history-item {
 
-    background-color: #eeeeee;
+    background: white;
+
+    border-radius: 20px;
 
     padding: 15px;
-    margin: 10px;
 
-    border-radius: 15px;
+    margin: 10px auto;
+
+    max-width: 600px;
 }
 
 .restore-btn {
 
-    background-color: green;
-    color: white;
-
-    margin-top: 10px;
-}
-
-#history-container {
-
-    max-width: 600px;
-    margin: 0 auto;
+    background: green;
 }
