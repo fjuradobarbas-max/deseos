@@ -62,29 +62,34 @@ function moveToHistory(cloud) {
 
     restoreButton.addEventListener('click', function () {
 
-        const restored =
-            document.createElement('div');
+    const restored =
+        document.createElement('div');
 
-        restored.className =
-            cloud.className;
+    restored.className =
+        cloud.className;
 
-        restored.textContent =
-            cloud.textContent;
+    restored.textContent =
+        cloud.textContent;
 
-        restored.addEventListener('click', function () {
+    restored.addEventListener('click', function () {
 
-            selectedCloud = restored;
+        selectedCloud = restored;
 
-            selectedWish.textContent =
-                restored.textContent;
+        selectedWish.textContent =
+            restored.textContent;
 
             showScreen(detailScreen);
 
-        });
+    });
 
-        cloudContainer.appendChild(restored);
+    cloudContainer.appendChild(restored);
 
-        item.remove();
+    item.remove();
+
+    saveData();
+
+
+
 
     });
 
@@ -96,12 +101,154 @@ function moveToHistory(cloud) {
 
     cloud.remove();
 
+    saveData();
+
 }
 
 /*
     Arranque
 */
+
+function saveData() {
+
+    const clouds = [];
+
+    document
+        .querySelectorAll('#cloud-container .cloud')
+        .forEach(function (cloud) {
+
+            clouds.push({
+                text: cloud.textContent,
+                className: cloud.className
+            });
+
+        });
+
+    const history = [];
+
+    document
+        .querySelectorAll('.history-item')
+        .forEach(function (item) {
+
+            history.push(
+                item.querySelector('div').textContent
+            );
+
+        });
+
+    localStorage.setItem(
+        'deseos_clouds',
+        JSON.stringify(clouds)
+    );
+
+    localStorage.setItem(
+        'deseos_history',
+        JSON.stringify(history)
+    );
+
+}
+
+function createCloud(text, className) {
+
+    const cloud =
+        document.createElement('div');
+
+    cloud.className =
+        className;
+
+    cloud.textContent =
+        text;
+
+    cloud.addEventListener('click', function () {
+
+        selectedCloud = cloud;
+
+        selectedWish.textContent =
+            cloud.textContent;
+
+        showScreen(detailScreen);
+
+    });
+
+    cloudContainer.appendChild(cloud);
+
+}
+
+function createCloud(text, className) {
+
+    const cloud =
+        document.createElement('div');
+
+    cloud.className =
+        className;
+
+    cloud.textContent =
+        text;
+
+    cloud.addEventListener('click', function () {
+
+        selectedCloud = cloud;
+
+        selectedWish.textContent =
+            cloud.textContent;
+
+        showScreen(detailScreen);
+
+    });
+
+    cloudContainer.appendChild(cloud);
+
+}
+
+function createHistoryItem(text) {
+
+    const item =
+        document.createElement('div');
+
+    item.classList.add(
+        'history-item'
+    );
+
+    const content =
+        document.createElement('div');
+
+    content.textContent =
+        text;
+
+    const restoreButton =
+        document.createElement('button');
+
+    restoreButton.textContent =
+        'Reincorporar';
+
+    restoreButton.classList.add(
+        'restore-btn'
+    );
+
+    restoreButton.addEventListener('click', function () {
+
+        createCloud(
+            text,
+            'cloud fernando'
+        );
+
+        item.remove();
+
+        saveData();
+
+    });
+
+    item.appendChild(content);
+
+    item.appendChild(restoreButton);
+
+    historyContainer.appendChild(item);
+
+}
+
 showScreen(homeScreen);
+
+loadData();
 
 /*
     Fernando
@@ -196,35 +343,12 @@ document
 
         }
 
-        const cloud =
-            document.createElement('div');
+        createCloud(
+    text,
+    `cloud ${selectedUser.toLowerCase()}`
+);
 
-        cloud.classList.add('cloud');
-
-        if (selectedUser === 'Fernando') {
-
-            cloud.classList.add('fernando');
-
-        } else {
-
-            cloud.classList.add('debora');
-
-        }
-
-        cloud.textContent = text;
-
-        cloud.addEventListener('click', function () {
-
-            selectedCloud = cloud;
-
-            selectedWish.textContent =
-                cloud.textContent;
-
-            showScreen(detailScreen);
-
-        });
-
-        cloudContainer.appendChild(cloud);
+saveData();
 
         wishText.value = '';
 
