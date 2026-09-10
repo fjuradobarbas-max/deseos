@@ -41,15 +41,29 @@ button {
 
     border-radius: 20px;
 
-    padding: 15px 25px;
+    padding: 15px 30px;
 
     margin: 10px;
 
     cursor: pointer;
 
+    font-size: 18px;
+
+    font-weight: bold;
+
     color: white;
 
-    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.20);
+
+    transition: 0.2s;
+}
+
+button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+
 }
 
 .fernando {
@@ -146,4 +160,52 @@ textarea {
 .restore-btn {
 
     background: green;
+}
+
+#back-btn,
+#detail-back-btn,
+#history-back-btn {
+
+    background: #6c757d;
+
+}
+
+#save-btn {
+
+    background: #28a745;
+
+}
+
+#complete-btn {
+
+    background: #ff9800;
+
+}
+
+.restore-btn {
+
+    background: #2196f3;
+
+}
+
+.history-button {
+
+    background: #8e44ad;
+
+}
+
+#editor-screen {
+
+    padding-top: 40px;
+
+}
+
+#selected-user {
+
+    color: #333;
+
+    font-size: 40px;
+
+    margin-bottom: 20px;
+
 }
