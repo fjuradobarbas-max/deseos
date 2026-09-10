@@ -6,7 +6,6 @@ import {
     addDoc,
     deleteDoc,
     doc,
-    getDocs,
     onSnapshot,
     query
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
@@ -42,6 +41,10 @@ const app =
 const db =
     getFirestore(app);
 
+/* ==========================
+   VARIABLES
+========================== */
+
 let selectedUser = '';
 let selectedCloud = null;
 
@@ -72,22 +75,9 @@ const cloudContainer =
 const historyContainer =
     document.getElementById('history-container');
 
-function hideAllScreens() {
-
-    homeScreen.classList.add('hidden');
-    editorScreen.classList.add('hidden');
-    detailScreen.classList.add('hidden');
-    historyScreen.classList.add('hidden');
-
-}
-
-function showScreen(screen) {
-
-    hideAllScreens();
-
-    screen.classList.remove('hidden');
-
-}
+/* ==========================
+   PANTALLAS
+========================== */
 
 function hideAllScreens() {
 
@@ -105,6 +95,12 @@ function showScreen(screen) {
     screen.classList.remove('hidden');
 
 }
+
+showScreen(homeScreen);
+
+/* ==========================
+   RENDER DESEOS
+========================== */
 
 function renderWish(docId, data) {
 
@@ -125,7 +121,8 @@ function renderWish(docId, data) {
         selectedCloud = {
             id: docId,
             text: data.text,
-            className: data.className
+            className: data.className,
+            author: data.author
         };
 
         selectedWish.textContent =
@@ -139,12 +136,18 @@ function renderWish(docId, data) {
 
 }
 
+/* ==========================
+   RENDER HISTORICO
+========================== */
+
 function renderCompleted(docId, data) {
 
     const item =
         document.createElement('div');
 
-    item.classList.add('history-item');
+    item.classList.add(
+        'history-item'
+    );
 
     const title =
         document.createElement('div');
@@ -155,7 +158,9 @@ function renderCompleted(docId, data) {
     const restoreButton =
         document.createElement('button');
 
-    restoreButton.classList.add('restore-btn');
+    restoreButton.classList.add(
+        'restore-btn'
+    );
 
     restoreButton.textContent =
         'Reincorporar';
@@ -165,11 +170,18 @@ function renderCompleted(docId, data) {
         async function () {
 
             await addDoc(
-                collection(db, 'wishes'),
+                collection(
+                    db,
+                    'wishes'
+                ),
                 {
                     text: data.text,
-                    className: data.className,
-                    author: data.author
+                    className:
+                        data.className,
+                    author:
+                        data.author,
+                    createdAt:
+                        Date.now()
                 }
             );
 
@@ -185,11 +197,20 @@ function renderCompleted(docId, data) {
     );
 
     item.appendChild(title);
-    item.appendChild(restoreButton);
 
-    historyContainer.appendChild(item);
+    item.appendChild(
+        restoreButton
+    );
+
+    historyContainer.appendChild(
+        item
+    );
 
 }
+
+/* ==========================
+   FIRESTORE TIEMPO REAL
+========================== */
 
 onSnapshot(
 
@@ -204,16 +225,261 @@ onSnapshot(
 
         cloudContainer.innerHTML = '';
 
-        snapshot.forEach(function (documento) {
+        snapshot.forEach(
+            function (documento) {
 
-            renderWish(
-                documento.id,
-                documento.data()
-            );
+                renderWish(
+                    documento.id,
+                    documento.data()
+                );
 
-        });
+            }
+        );
 
     }
 
 );
-showScreen(homeScreen);
+
+onSnapshot(
+
+    query(
+        collection(
+            db,
+            'completed_wishes'
+        )
+    ),
+
+    function (snapshot) {
+
+        historyContainer.innerHTML = '';
+
+        snapshot.forEach(
+            function (documento) {
+
+                renderCompleted(
+                    documento.id,
+                    documento.data()
+                );
+
+            }
+        );
+
+    }
+
+);
+
+/* ==========================
+   USUARIOS
+========================== */
+
+document
+    .getElementById(
+        'fernando-btn'
+    )
+    .addEventListener(
+        'click',
+        function () {
+
+            selectedUser =
+                'Fernando';
+
+            selectedUserText.textContent =
+                selectedUser;
+
+            showScreen(
+                editorScreen
+            );
+
+        }
+    );
+
+document
+    .getElementById(
+        'debora-btn'
+    )
+    .addEventListener(
+        'click',
+        function () {
+
+            selectedUser =
+                'Debora';
+
+            selectedUserText.textContent =
+                selectedUser;
+
+            showScreen(
+                editorScreen
+            );
+
+        }
+    );
+
+/* ==========================
+   NAVEGACION
+========================== */
+
+document
+    .getElementById(
+        'back-btn'
+    )
+    .addEventListener(
+        'click',
+        function () {
+
+            showScreen(
+                homeScreen
+            );
+
+        }
+    );
+
+document
+    .getElementById(
+        'detail-back-btn'
+    )
+    .addEventListener(
+        'click',
+        function () {
+
+            showScreen(
+                homeScreen
+            );
+
+        }
+    );
+
+document
+    .getElementById(
+        'history-btn'
+    )
+    .addEventListener(
+        'click',
+        function () {
+
+            showScreen(
+                historyScreen
+            );
+
+        }
+    );
+
+document
+    .getElementById(
+        'history-back-btn'
+    )
+    .addEventListener(
+        'click',
+        function () {
+
+            showScreen(
+                homeScreen
+            );
+
+        }
+    );
+
+/* ==========================
+   GUARDAR DESEO
+========================== */
+
+document
+    .getElementById(
+        'save-btn'
+    )
+    .addEventListener(
+        'click',
+        async function () {
+
+            const text =
+                wishText.value.trim();
+
+            if (!text) {
+
+                alert(
+                    'Escribe un deseo'
+                );
+
+                return;
+
+            }
+
+            await addDoc(
+                collection(
+                    db,
+                    'wishes'
+                ),
+                {
+                    text: text,
+                    author:
+                        selectedUser,
+                    className:
+                        `cloud ${selectedUser.toLowerCase()}`,
+                    createdAt:
+                        Date.now()
+                }
+            );
+
+            wishText.value = '';
+
+            showScreen(
+                homeScreen
+            );
+
+        }
+    );
+
+/* ==========================
+   CUMPLIDO
+========================== */
+
+document
+    .getElementById(
+        'complete-btn'
+    )
+    .addEventListener(
+        'click',
+        async function () {
+
+            if (
+                !selectedCloud
+            ) {
+                return;
+            }
+
+            await addDoc(
+                collection(
+                    db,
+                    'completed_wishes'
+                ),
+                {
+                    text:
+                        selectedCloud.text,
+
+                    className:
+                        selectedCloud.className,
+
+                    author:
+                        selectedCloud.author,
+
+                    completedAt:
+                        Date.now()
+                }
+            );
+
+            await deleteDoc(
+                doc(
+                    db,
+                    'wishes',
+                    selectedCloud.id
+                )
+            );
+
+            selectedCloud =
+                null;
+
+            showScreen(
+                homeScreen
+            );
+
+        }
+    );
