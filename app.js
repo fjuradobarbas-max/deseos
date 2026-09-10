@@ -428,20 +428,20 @@ document
         }
     );
 
-document
-    .getElementById(
-        'history-btn'
-    )
-    .addEventListener(
-        'click',
-        function () {
+const completedCount =
+    document.getElementById('completed-count');
+    
+    completedCount.addEventListener(
+    'click',
+    function () {
 
-            showScreen(
-                historyScreen
-            );
+        showScreen(
+            historyScreen
+        );
 
-        }
-    );
+    }
+);
+
 
 document
     .getElementById(
