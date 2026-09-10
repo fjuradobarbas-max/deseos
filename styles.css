@@ -57,7 +57,9 @@ textarea {
 
 .cloud.debora {
     background-color: #ff69b4;
-}#selected-wish {
+}
+
+#selected-wish {
     background-color: #666;
     color: white;
     padding: 25px;
