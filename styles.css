@@ -1,3 +1,7 @@
+/* =====================================
+   GENERAL
+===================================== */
+
 body {
 
     margin: 0;
@@ -7,33 +11,59 @@ body {
 
     background: linear-gradient(
         135deg,
-        #ffe1f0,
-        #dcefff
+        #ffd9ec,
+        #dfefff
     );
 
     text-align: center;
+
 }
 
 .hidden {
+
     display: none !important;
+
 }
+
+/* =====================================
+   PANTALLAS
+===================================== */
+
+#home-screen,
+#editor-screen,
+#detail-screen,
+#history-screen {
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+}
+
+/* =====================================
+   TITULO
+===================================== */
 
 .title {
 
     font-size: 60px;
-    font-weight: bold;
 
-    margin-top: 30px;
+    font-weight: bold;
 
     color: white;
 
-    text-shadow: 2px 2px 5px #666;
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
+
 }
 
-.users {
-
-    margin-top: 30px;
-}
+/* =====================================
+   BOTONES
+===================================== */
 
 button {
 
@@ -47,119 +77,56 @@ button {
 
     cursor: pointer;
 
+    color: white;
+
     font-size: 18px;
 
     font-weight: bold;
 
-    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.20);
 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.20);
+    transition: all 0.20s ease;
 
-    transition: 0.2s;
 }
 
 button:hover {
 
     transform: translateY(-2px);
 
-    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.30);
+
+}
+
+/* =====================================
+   USUARIOS
+===================================== */
+
+.users {
+
+    margin-bottom: 30px;
 
 }
 
 .fernando {
 
-    background: #4a90e2;
+    background-color: #4a90e2;
+
 }
 
 .debora {
 
-    background: #ff69b4;
+    background-color: #ff69b4;
+
 }
 
-.history-button {
+/* =====================================
+   BOTONES ESPECIFICOS
+===================================== */
 
-    background: #8e44ad;
-}
+#save-btn {
 
-textarea {
+    background: #28a745;
 
-    width: 90%;
-    max-width: 600px;
-
-    height: 250px;
-
-    border-radius: 20px;
-
-    border: none;
-
-    padding: 15px;
-
-    font-size: 18px;
-}
-
-#cloud-container {
-
-    margin-top: 30px;
-}
-
-.cloud {
-
-    display: inline-block;
-
-    margin: 10px;
-
-    padding: 15px 25px;
-
-    border-radius: 999px;
-
-    color: white;
-
-    cursor: pointer;
-
-    font-weight: bold;
-
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.cloud.fernando {
-
-    background: #4a90e2;
-}
-
-.cloud.debora {
-
-    background: #ff69b4;
-}
-
-#selected-wish {
-
-    background: white;
-
-    border-radius: 20px;
-
-    padding: 25px;
-
-    margin: 20px auto;
-
-    max-width: 600px;
-}
-
-.history-item {
-
-    background: white;
-
-    border-radius: 20px;
-
-    padding: 15px;
-
-    margin: 10px auto;
-
-    max-width: 600px;
-}
-
-.restore-btn {
-
-    background: green;
 }
 
 #back-btn,
@@ -170,21 +137,9 @@ textarea {
 
 }
 
-#save-btn {
-
-    background: #28a745;
-
-}
-
 #complete-btn {
 
     background: #ff9800;
-
-}
-
-.restore-btn {
-
-    background: #2196f3;
 
 }
 
@@ -194,18 +149,166 @@ textarea {
 
 }
 
-#editor-screen {
+.restore-btn {
 
-    padding-top: 40px;
+    background: #2196f3;
 
 }
 
+/* =====================================
+   EDITOR
+===================================== */
+
 #selected-user {
 
-    color: #333;
+    font-size: 42px;
 
-    font-size: 40px;
+    color: #333;
 
     margin-bottom: 20px;
 
 }
+
+textarea {
+
+    width: 90%;
+
+    max-width: 700px;
+
+    height: 280px;
+
+    padding: 20px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    font-size: 18px;
+
+    resize: vertical;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+}
+
+/* =====================================
+   DESEOS ACTIVOS
+===================================== */
+
+#cloud-container {
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+.cloud {
+
+    display: block;
+
+    max-width: 700px;
+
+    margin: 15px auto;
+
+    padding: 18px 25px;
+
+    border-radius: 999px;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    transition: all 0.20s ease;
+
+}
+
+.cloud:hover {
+
+    transform: scale(1.02);
+
+}
+
+.cloud.fernando {
+
+    background: #4a90e2;
+
+}
+
+.cloud.debora {
+
+    background: #ff69b4;
+
+}
+
+/* =====================================
+   DETALLE DEL DESEO
+===================================== */
+
+#selected-wish {
+
+    background: white;
+
+    max-width: 700px;
+
+    margin: 30px auto;
+
+    padding: 25px;
+
+    border-radius: 25px;
+
+    font-size: 24px;
+
+    color: #333;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+}
+
+/* =====================================
+   HISTORICO
+===================================== */
+
+#history-container {
+
+    max-width: 800px;
+
+    margin: 20px auto;
+
+}
+
+.history-item {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    margin: 15px auto;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+
+}
+
+/* =====================================
+   CONTADORES
+===================================== */
+
+.counter {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #555;
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+/* =====================================
