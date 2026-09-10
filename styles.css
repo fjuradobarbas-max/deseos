@@ -445,13 +445,19 @@ textarea {
 
 .counter {
 
-    cursor: pointer;
+    display: inline-block;
 
-    min-width: 150px;
+    margin: 10px;
 
-    background: rgba(255,255,255,.85);
+    padding: 12px 20px;
 
-    backdrop-filter: blur(10px);
+    background: white;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,.15);
 
 }
 

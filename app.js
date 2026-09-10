@@ -427,9 +427,6 @@ document
 
         }
     );
-
-const completedCount =
-    document.getElementById('completed-count');
     
     completedCount.addEventListener(
     'click',
